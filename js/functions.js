@@ -3,13 +3,13 @@
 const SOME_STRING = 'asdf';
 const EQUAL_VALUE = 10;
 
-function compareStringLength(string, value) {
+const compareStringLength = (string, value) => {
   if (string.length > value) {
     return true;
   }
 
   return false;
-}
+};
 
 compareStringLength(SOME_STRING, EQUAL_VALUE);
 
@@ -17,7 +17,7 @@ compareStringLength(SOME_STRING, EQUAL_VALUE);
 
 const ANOTHER_STRING = 'за мо к           о ма З';
 
-function isStringPolydrom(string) {
+const isStringPolydrom = (string) => {
   let comparingString = '';
   string = string.replaceAll(' ', '').toLowerCase();
 
@@ -30,7 +30,7 @@ function isStringPolydrom(string) {
   }
 
   return false;
-}
+};
 
 isStringPolydrom(ANOTHER_STRING);
 
@@ -42,7 +42,7 @@ isStringPolydrom(ANOTHER_STRING);
 
 const NEW_STRING = '354657';
 
-function getIntNumber(value) {
+const getIntNumber = (value) => {
   let resultString = '';
 
   for (let i = 0 ; i < value.length ; i++) {
@@ -64,6 +64,6 @@ function getIntNumber(value) {
     }
   }
   return parseInt(resultString, 10);
-}
+};
 
 getIntNumber(NEW_STRING);
