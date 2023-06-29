@@ -67,3 +67,44 @@ const getIntNumber = (value) => {
 };
 
 getIntNumber(NEW_STRING);
+
+// Функция, которая принимает время начала и конца рабочего дня, а также время старта и продолжительность встречи в минутах и возвращает true,
+// если встреча не выходит за рамки рабочего дня, и false, если выходит.
+
+const timeToNeededFormat = (time) => {
+  time = String(time).split(':');
+
+  for (let i = 0 ; i < 2 ; i++) {
+    if (time[i].length < 2) {
+      time[i] += '0';
+      time[i] = time[i].split('').reverse().join('');
+    }
+  }
+
+  return `${time[0] }:${ time[1]}`;
+};
+
+const compareLengthOfMeeting = (beginningOfDay, endOfDay, startTime, durationOfMeeting) => {
+  beginningOfDay = timeToNeededFormat(beginningOfDay);
+  endOfDay = timeToNeededFormat(endOfDay);
+  startTime = timeToNeededFormat(startTime);
+
+  if (startTime > endOfDay || startTime < beginningOfDay) {
+    return false;
+  }
+
+  startTime = String(startTime).split(':');
+  const MEETING_TIME = timeToNeededFormat(`${Math.floor(durationOfMeeting / 60) }:${ durationOfMeeting % 60}`).split(':');
+
+  for (let i = 0; i < 2 ; i++) {
+    startTime[i] = Number(startTime[i]) + Number(MEETING_TIME[i]);
+  }
+
+  if (`${startTime[0] }:${ startTime[1]}` <= endOfDay) {
+    return true;
+  }
+
+  return false;
+};
+
+compareLengthOfMeeting('10:00', '23:59', '23:00', 60);
