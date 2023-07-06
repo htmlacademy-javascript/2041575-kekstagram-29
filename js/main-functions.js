@@ -52,7 +52,7 @@ const createComment = () => ({
 //Функция для получения фотографий
 const createPhoto = () => ({
   id: getRandomId(PHOTO_IDS),
-  url: getRandomId(PHOTO_URLS),
+  url: `photos/${ getRandomId(PHOTO_URLS) }.jpg`,
   description: getRandomPhotoDescription(PHOTO_DESCRIPTIONS),
   likes: getRandomInteger(15, 300),
   comment: Array.from({length: getRandomInteger(0, 30)}, createComment),
@@ -60,6 +60,6 @@ const createPhoto = () => ({
 
 //Вывод массива объектов 25 фотографий
 
-const photoCatalog = Array.from({length: 25}, createPhoto);
+const photoCatalog = () => Array.from({length: 25}, createPhoto);
 
 export {photoCatalog};
