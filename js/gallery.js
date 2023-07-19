@@ -1,4 +1,5 @@
-import { renderThumbnails } from './rendering-thumbnails';
+import { renderThumbnails } from './rendering-thumbnails.js';
+import { showBigPicture } from './big-picture.js';
 
 const container = document.querySelector('.pictures');
 
@@ -12,10 +13,11 @@ const renderGallery = (pictures) => {
     evt.preventDefault();
     const picture = pictures.find(
       (item) => item.id === +thumbnail.dataset.thumbnailId
-      );
-
     );
+    showBigPicture(picture);
   });
 
   renderThumbnails(pictures, container);
 };
+
+export { renderGallery };
