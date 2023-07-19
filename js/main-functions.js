@@ -55,7 +55,7 @@ const createPhoto = () => ({
   url: `photos/${ getRandomId(PHOTO_URLS) }.jpg`,
   description: getRandomPhotoDescription(PHOTO_DESCRIPTIONS),
   likes: getRandomInteger(15, 300),
-  comment: Array.from({length: getRandomInteger(0, 30)}, createComment),
+  comments: Array.from({length: getRandomInteger(0, 30)}, createComment),
 });
 
 //Вывод массива объектов 25 фотографий
