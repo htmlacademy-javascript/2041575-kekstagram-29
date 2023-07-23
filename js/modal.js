@@ -2,19 +2,19 @@ import { resetScale } from './scale.js';
 import {
   init as initEffect,
   reset as resetEffect,
-} from './effect.js';
+} from './effects.js';
 
 const maxHashtagCount = 5;
 const validSymbols = /^#[a-zа-яё0-9]{1,19}$/i;
-const errorText = {
-  invalidCount: `Максимум ${maxHashtagCount} хэштегов`,
-  notUnique: 'Хэштеги должны быть уникальными',
-  invalidPattern: 'Неправильный хэштег',
+const ErrorText = {
+  INVALID_COUNT: `Максимум ${maxHashtagCount} хэштегов`,
+  NOT_UNIQUE: 'Хэштеги должны быть уникальными',
+  INVALID_PATTERN: 'Неправильный хэштег',
 };
 
 const body = document.querySelector('body');
 const form = document.querySelector('.img-upload__form');
-const overlay = form.querySelector('.ing-upload__overlay');
+const overlay = form.querySelector('.img-upload__overlay');
 const cancelButton = form.querySelector('.img-upload__cancel');
 const fileField = form.querySelector('.img-upload__input');
 const hashtagField = form.querySelector('.text__hashtags');
@@ -79,26 +79,26 @@ const onFormSubmit = (evt) => {
 pristine.addValidator(
   hashtagField,
   hasValidCount,
-  errorText.invalidCount,
+  ErrorText.INVALID_COUNT,
   3,
   true
 );
 pristine.addValidator(
   hashtagField,
   hasUniqueTags,
-  errorText.notUnique,
+  ErrorText.NOT_UNIQUE,
   1,
   true
 );
 pristine.addValidator(
   hashtagField,
   hasValidTags,
-  errorText.invalidPattern,
+  ErrorText.INVALID_PATTERN,
   2,
   true
 );
 
 fileField.addEventListener('change', onFileIntputChange);
-cancelButton.addEventListener('click', oncanplaythrough);
+cancelButton.addEventListener('click', onCancelButtonClick);
 form.addEventListener('submit', onFormSubmit);
 initEffect();
