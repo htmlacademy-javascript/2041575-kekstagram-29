@@ -1,5 +1,5 @@
 import {photoCatalog} from './main-functions.js';
-import './rendering-thumbnails.js';
-import { renderThumbnails } from './rendering-thumbnails.js';
+import { renderGallery } from './gallery.js';
+import './modal.js';
 
-renderThumbnails(photoCatalog());
+renderGallery(photoCatalog());
