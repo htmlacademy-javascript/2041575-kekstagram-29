@@ -39,7 +39,7 @@ function onDocumentKeydown(evt) {
     evt.preventDefault();
     hideBigPicture();
   }
-};
+}
 
 const onCancelButtonClick = () => {
   hideBigPicture();
