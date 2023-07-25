@@ -1,5 +1,22 @@
-import {photoCatalog} from './main-functions.js';
+import { showAlert } from './util.js';
 import { renderGallery } from './gallery.js';
-import './modal.js';
+import { hideModal, setOnFormSumbit } from './modal.js';
+import { sendData, getData } from './api.js';
+import { showErrorMessage, showSuccessMessage } from './message.js';
 
-renderGallery(photoCatalog());
+setOnFormSumbit(async (data) => {
+  try {
+    await sendData(data);
+    hideModal();
+    showSuccessMessage();
+  } catch {
+    showErrorMessage();
+  }
+});
+
+try {
+  const data = await getData();
+  renderGallery(data);
+} catch (err) {
+  showAlert(err.message);
+}
