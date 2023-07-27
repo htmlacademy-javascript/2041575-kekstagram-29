@@ -1,8 +1,9 @@
-import { showAlert } from './util.js';
+import { showAlert, debounce } from './util.js';
 import { renderGallery } from './gallery.js';
 import { hideModal, setOnFormSumbit } from './modal.js';
 import { sendData, getData } from './api.js';
 import { showErrorMessage, showSuccessMessage } from './message.js';
+import { init as initFilter, getFilteredPictures } from './filter.js';
 
 setOnFormSumbit(async (data) => {
   try {
@@ -16,7 +17,9 @@ setOnFormSumbit(async (data) => {
 
 try {
   const data = await getData();
-  renderGallery(data);
+  const debouncedRenderGallery = debounce(renderGallery);
+  initFilter(data, debouncedRenderGallery);
+  renderGallery(getFilteredPictures());
 } catch (err) {
   showAlert(err.message);
 }
