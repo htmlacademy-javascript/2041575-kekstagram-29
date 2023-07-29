@@ -1,13 +1,10 @@
-import { resetScale } from './scale.js';
-import {
-  init as initEffect,
-  reset as resetEffect,
-} from './effects.js';
+import { resetScale } from './scales.js';
+import { initEffect, resetEffect } from './effects.js';
 
-const maxHashtagCount = 5;
-const validSymbols = /^#[a-zа-яё0-9]{1,19}$/i;
+const MAX_HASHTAG_COUNT = 5;
+const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 const ErrorText = {
-  INVALID_COUNT: `Максимум ${maxHashtagCount} хэштегов`,
+  INVALID_COUNT: `Максимум ${MAX_HASHTAG_COUNT} хэштегов`,
   NOT_UNIQUE: 'Хэштеги должны быть уникальными',
   INVALID_PATTERN: 'Неправильный хэштег',
 };
@@ -65,9 +62,9 @@ const isValidType = (file) => {
 
 const normalizeTags = (tagString) => tagString.trim().split(' ').filter((tag) => Boolean(tag.length));
 
-const hasValidTags = (value) => normalizeTags(value).every((tag) => validSymbols.test(tag));
+const hasValidTags = (value) => normalizeTags(value).every((tag) => VALID_SYMBOLS.test(tag));
 
-const hasValidCount = (value) => normalizeTags(value).length <= maxHashtagCount;
+const hasValidCount = (value) => normalizeTags(value).length <= MAX_HASHTAG_COUNT;
 
 const hasUniqueTags = (value) => {
   const lowerCaseTags = normalizeTags(value).map((tag) => tag.toLowerCase());
