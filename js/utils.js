@@ -1,4 +1,4 @@
-const ALERT_SHOW_TIME = 5000;
+const ALERT_TIME = 5000;
 
 const showAlert = (message) => {
   const alert = document.createElement('div');
@@ -16,7 +16,7 @@ const showAlert = (message) => {
 
   setTimeout(() => {
     alert.remove();
-  }, ALERT_SHOW_TIME);
+  }, ALERT_TIME);
 };
 
 const debounce = (callback, timeoutDelay = 500) => {
